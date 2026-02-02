@@ -1,12 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>DuckDB.FSharp</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Huw Simpson</Authors>
+    <Description>Ergonomic F# wrapper for DuckDB, inspired by Npgsql.FSharp. Provides a functional, type-safe API for connections, parameterized queries, and reader mappings.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>fsharp;duckdb;database;sql;analytics</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/typesmar/DuckDB.FSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/typesmar/DuckDB.FSharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+
+    <PackageIcon>icon.png</PackageIcon>
+    <Copyright>Copyright © Huw Simpson 2026</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Common.fs" /><Compile Include="DuckDB.FSharp.fs" />
+    <Compile Include="Common.fs" />
+    <Compile Include="DuckDB.FSharp.fs" />
   </ItemGroup>
 
   <ItemGroup>
