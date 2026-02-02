@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8C3F81C4-1E36-483E-BD16-C2EBA825AF79}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DuckDB.FSharp", "src\DuckDB.FSharp\DuckDB.FSharp.fsproj", "{C3BE598B-F92B-46FB-8B05-1FA6DE3C1BCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{20137686-8026-415D-8104-78997AD4AA93}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DuckDB.FSharpTests", "tests\DuckDB.FSharpTests\DuckDB.FSharpTests.fsproj", "{0859B36C-5C52-4C47-99F9-8CBFD2AC56E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3BE598B-F92B-46FB-8B05-1FA6DE3C1BCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3BE598B-F92B-46FB-8B05-1FA6DE3C1BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3BE598B-F92B-46FB-8B05-1FA6DE3C1BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3BE598B-F92B-46FB-8B05-1FA6DE3C1BCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0859B36C-5C52-4C47-99F9-8CBFD2AC56E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0859B36C-5C52-4C47-99F9-8CBFD2AC56E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0859B36C-5C52-4C47-99F9-8CBFD2AC56E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0859B36C-5C52-4C47-99F9-8CBFD2AC56E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C3BE598B-F92B-46FB-8B05-1FA6DE3C1BCB} = {8C3F81C4-1E36-483E-BD16-C2EBA825AF79}
+		{0859B36C-5C52-4C47-99F9-8CBFD2AC56E0} = {20137686-8026-415D-8104-78997AD4AA93}
+	EndGlobalSection
+EndGlobal
