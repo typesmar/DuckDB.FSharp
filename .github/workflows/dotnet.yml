@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write      # Required for NuGet trusted publishing via OIDC
-      contents: read       # Default, but explicitly added for clarity
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
