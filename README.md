@@ -4,6 +4,7 @@ Thin F#-friendly layer for DuckDB, inspired by [Npgsql.FSharp](https://github.co
 
 Provides a functional, type-safe, and ergonomic API for working with DuckDB databases in F#, including connection management, parameterized queries, and flexible reader mappings.
 
+
 ## Installation
 
 ```bash
@@ -113,6 +114,11 @@ connectionString
 - Synchronous and asynchronous execution
 - Transaction support
 - Comprehensive unit tests covering connections, queries, parameters, readers, and edge cases
+
+
+## Status
+[![.NET](https://github.com/typesmar/DuckDB.FSharp/actions/workflows/dotnet.yml/badge.svg)](https://github.com/typesmar/DuckDB.FSharp/actions/workflows/dotnet.yml)
+
 
 ## Contributing
 
