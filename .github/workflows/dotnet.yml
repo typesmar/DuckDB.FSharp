@@ -1,11 +1,12 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
 
 on:
   push:
     branches: [ "main" ]
+    tags:
+      - 'v*'  # Triggers the full workflow (including publish) on tags like v0.1.0, v0.2.1, etc.
   pull_request:
     branches: [ "main" ]
 
@@ -17,37 +18,53 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 10.0.x
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Build
-      run: dotnet build --no-restore --configuration Release
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
 
-    - name: Test
-      run: dotnet test tests/DuckDB.FSharpTests/ --no-build --configuration Release --verbosity normal --logger trx --results-directory ./test-results
+      - name: Test
+        run: dotnet test tests/DuckDB.FSharpTests/ --no-build --configuration Release --verbosity normal --logger trx --results-directory ./test-results
 
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: ./test-results
-      if: always()
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ./test-results
+        if: always()
 
-    - name: Pack NuGet
-      run: dotnet pack src/DuckDB.FSharp/DuckDB.FSharp.fsproj --no-build --configuration Release
+      - name: Pack NuGet
+        run: dotnet pack src/DuckDB.FSharp/DuckDB.FSharp.fsproj --no-build --configuration Release
 
-    - name: Upload NuGet package
-      uses: actions/upload-artifact@v4
-      with:
-        name: nuget-package
-        path: src/DuckDB.FSharp/bin/Release/*.nupkg
-      if: always()
+      - name: Upload NuGet package
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-package
+          path: src/DuckDB.FSharp/bin/Release/*.nupkg
+        if: always()
+
+      # === New: Trusted Publishing steps (only run on tagged releases) ===
+      - name: Authenticate to nuget.org (Trusted Publishing via GitHub OIDC)
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          dotnet nuget add source https://api.nuget.org/v3/index.json \
+            --name nuget.org \
+            --username ${{ github.actor }} \
+            --password ${{ github.token }} \
+            --store-password-in-clear-text
+
+      - name: Publish to nuget.org
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          dotnet nuget push src/DuckDB.FSharp/bin/Release/*.nupkg \
+            --source nuget.org \
+            --skip-duplicate
